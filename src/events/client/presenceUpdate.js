@@ -7,7 +7,7 @@ module.exports = {
     playing = null;
     game = null;
     if (after.activities.length > 0) {
-      if (after.activities[0].name == "RAGE Multiplayer" && after.activities[0].details == 'Проводит время' && after.activities[0].state == 'на gta5rp.com Rockford') {
+      if (after.activities[0].name == "RAGE Multiplayer" &&  after.activities[0].state == 'на gta5rp.com Rockford') {
         playing = true;
         game = after.activities[0].name;
       }

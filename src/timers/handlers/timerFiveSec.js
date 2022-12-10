@@ -22,14 +22,23 @@ module.exports = (client) => {
     }
     con.query(`SELECT * FROM users where point < 0;`, async (err, row) => {
       row.forEach(async (element) => {
-        member = client.guilds.cache.get('822945109854257154').members.cache.get(element.id);
-        member.kick('ban');
+        
+        member = client.guilds.cache.get(process.env.guild_id).members.cache.get(element.id);
+        await member
+          .send(
+            `Вы были кикнуты из семьи FATED.\n Вы можете снова подать заявку https://discord.gg/fated`
+          )
+          .catch((error) => {
+            console.log("cant send message");
+          });
+        await member.kick('ban');
+        
       });
 
       con.query(
         `DELETE from users where point < 0;
           UPDATE users set today_seconds = today_seconds + 5 where playing = 1;
-          UPDATE users set point = point + 5 * (select coef from coefficients where name = ${coef}), today_hours = today_hours + 1, today_seconds = today_seconds - 3600 where today_seconds >= 3600`,
+          UPDATE users set point = point + 5 * (select coef from coefficients where name = '${coef}'), today_hours = today_hours + 1, today_seconds = today_seconds - 3600 where today_seconds >= 3600`,
         async (err, row) => {
           con.end();
         }
