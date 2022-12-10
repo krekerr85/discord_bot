@@ -10,7 +10,9 @@ module.exports = {
 
       try {
         await command.execute(interaction, client);
+        console.log(interaction);
       } catch (error) {
+        console.log(interaction);
         console.log(error);
       }
     } else if (interaction.isButton()) {
