@@ -20,12 +20,20 @@ module.exports = {
       `Select point from users where id = '${member.id}'`,
       async (err, row) => {
         con.end();
-        const points = row[0].point;
+        if (row.length > 0){
+          const points = row[0].point;
 
-        await interaction.editReply({
-          content: `Ваш баланс равен: ${points}`,
-          ephemeral: true,
-        });
+          await interaction.editReply({
+            content: `Ваш баланс равен: ${points}`,
+            ephemeral: true,
+          });
+        }else{
+          await interaction.editReply({
+            content: "Вас нет в базе!",
+            ephemeral: true,
+          });
+        }
+        
       }
     );
   },
