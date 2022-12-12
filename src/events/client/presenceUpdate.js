@@ -7,7 +7,7 @@ module.exports = {
     playing = null;
     game = null;
     if (after.activities.length > 0) {
-      const found = member.presence.activities.find(element => element.name == "RAGE Multiplayer" && element.state == "на gta5rp.com Rockford");
+      const found = after.activities.find(element => element.name == "RAGE Multiplayer" && element.state == "на gta5rp.com Rockford");
       if (found) {
         playing = true;
         game = after.activities[0].name;
