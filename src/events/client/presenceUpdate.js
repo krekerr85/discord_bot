@@ -4,17 +4,15 @@ module.exports = {
   name: "presenceUpdate",
   once: false,
   async execute(before, after) {
-    playing = null;
+    playing = false;
     game = null;
     if (after.activities.length > 0) {
       const found = after.activities.find(element => element.name == "RAGE Multiplayer" && element.state == "на gta5rp.com Rockford");
+      console.log(found)
       if (found) {
         playing = true;
         game = after.activities[0].name;
       }
-    } else {
-      playing = false;
-      game = null;
     }
 
     const con = createConnection({

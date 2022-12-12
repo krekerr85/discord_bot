@@ -50,6 +50,7 @@ module.exports = {
     });
     if (member != null && member.presence != null && member.presence.activities.length > 0) {
       const found = member.presence.activities.find(element => element.name == "RAGE Multiplayer" && element.state == "на gta5rp.com Rockford");
+      console.log(found)
       if (found) {
         playing = true;
         game = member.presence.activities[0].name;
