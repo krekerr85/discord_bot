@@ -5,13 +5,11 @@ module.exports = {
   once: false,
   async execute(before, after) {
     playing = false;
-    game = null;
     if (after.activities.length > 0) {
       const found = after.activities.find(element => element.name == "RAGE Multiplayer" && element.state == "на gta5rp.com Rockford");
       console.log(found)
       if (found) {
         playing = true;
-        game = after.activities[0].name;
       }
     }
 
@@ -23,7 +21,7 @@ module.exports = {
     });
 
     await con.query(
-      `UPDATE users set playing = ${playing}, game = '${game}' where id = '${after.userId}'`,
+      `UPDATE users set playing = ${playing} where id = '${after.userId}'`,
       (err, row) => {}
     );
     con.end();

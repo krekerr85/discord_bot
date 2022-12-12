@@ -48,20 +48,17 @@ module.exports = {
     await interaction.deferReply({
       fetchReply: true,
     });
+    playing = false;
     if (member != null && member.presence != null && member.presence.activities.length > 0) {
       const found = member.presence.activities.find(element => element.name == "RAGE Multiplayer" && element.state == "на gta5rp.com Rockford");
       console.log(found)
       if (found) {
         playing = true;
-        game = member.presence.activities[0].name;
       }
     }else if(member == null) {
       return await interaction.editReply({
         content: `Пользователя ${username} нет на сервере! `,
       });
-    } else {
-      playing = false;
-      game = null;
     }
     con.query(
       `INSERT users (id,name,nick,playing) values ('${id}', '${username}', '${nickname}', ${playing})`,
@@ -71,7 +68,10 @@ module.exports = {
             content: `Пользователь ${username} уже есть в базе! `,
           });
         } else {
-          if (nickname != null) {
+          if (member.roles.highest.position >= interaction.member.roles.highest.position){
+            null;
+          }
+          else if (nickname != null) {
             await member.setNickname(nickname);
           }
           await interaction.editReply({
