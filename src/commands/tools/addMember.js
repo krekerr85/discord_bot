@@ -50,10 +50,8 @@ module.exports = {
       fetchReply: true,
     });
     if (member != null && member.presence != null && member.presence.activities.length > 0) {
-      if (
-        member.presence.activities[0].name == "RAGE Multiplayer" &&
-        member.presence.activities[0].state == "на gta5rp.com Rockford"
-      ) {
+      const found = member.presence.activities.find(element => element.name == "RAGE Multiplayer" && element.state == "на gta5rp.com Rockford");
+      if (found) {
         playing = true;
         game = member.presence.activities[0].name;
       }
