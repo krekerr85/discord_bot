@@ -33,7 +33,7 @@ module.exports = {
       fetchReply: true,
     });
     await con.query(
-      `Select * from users where playing = 1 and channel_id != '${channelId}'`,
+      `Select * from users where playing = 1 and nvl(channel_id,0) != '${channelId}'`,
       async (err, row) => {
         con.end();
         console.log(err)
