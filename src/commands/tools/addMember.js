@@ -59,7 +59,7 @@ module.exports = {
       }
     }else if(member == null) {
       return await interaction.editReply({
-        content: `Пользователь ${username} нет на сервере! `,
+        content: `Пользователя ${username} нет на сервере! `,
       });
     } else {
       playing = false;
@@ -68,6 +68,7 @@ module.exports = {
     con.query(
       `INSERT users (id,name,nick,playing) values ('${id}', '${username}', '${nickname}', ${playing})`,
       async (err, row) => {
+        console.log(member.presence.activities);
         if (err != null && err.code == "ER_DUP_ENTRY") {
           return await interaction.editReply({
             content: `Пользователь ${username} уже есть в базе! `,

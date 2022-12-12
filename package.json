@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/bot.js",
   "scripts": {
-    "test": "pm2 start ."
+    "test": "node ."
   },
   "keywords": [],
   "author": "artandsky",
